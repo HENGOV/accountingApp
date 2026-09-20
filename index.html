@@ -3,67 +3,434 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
-  <meta name="theme-color" content="#111827">
+  <meta name="theme-color" content="#f4f6fa">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="我的记账本">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="我的财务">
 
-  <title>我的记账软件</title>
+  <title>我的财务</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>我的记账本</h1>
+  <!-- 开屏动画 -->
+  <div id="splash" class="splash">
+    <div class="splash-glow"></div>
 
-    <div class="summary">
-      <div>
-        <span>收入</span>
-        <strong id="totalIncome">$0.00</strong>
-      </div>
+    <div class="splash-content">
+      <div id="splashWeather" class="splash-weather">◌</div>
 
-      <div>
-        <span>支出</span>
-        <strong id="totalExpense">$0.00</strong>
-      </div>
+      <h1>我的财务</h1>
 
-      <div>
-        <span>余额</span>
-        <strong id="balance">$0.00</strong>
-      </div>
+      <p id="splashText">把生活，算得更清楚。</p >
+
+      <div class="splash-line"></div>
     </div>
-
-    <div class="form">
-
-      <select id="type">
-        <option value="expense">支出</option>
-        <option value="income">收入</option>
-      </select>
-
-      <input type="number" id="amount" placeholder="金额">
-
-      <select id="category">
-        <option value="吃饭">吃饭</option>
-        <option value="房租">房租</option>
-        <option value="车">车</option>
-        <option value="购物">购物</option>
-        <option value="工资">工资</option>
-        <option value="其他">其他</option>
-      </select>
-
-      <input type="text" id="note" placeholder="备注">
-
-      <button id="addBtn">记一笔</button>
-
-    </div>
-
-    <h2>账单记录</h2>
-
-    <div id="transactionList"></div>
   </div>
+
+
+  <!-- 天气背景效果 -->
+  <div id="weatherFx" class="weather-fx"></div>
+
+
+  <main class="app">
+
+    <!-- 顶部天气 -->
+    <section class="weather-card reveal reveal-1">
+
+      <div>
+        <p id="greeting" class="greeting">早上好</p >
+
+        <div class="weather-main">
+          <span id="weatherIcon" class="weather-icon">☀️</span>
+
+          <div>
+            <h1 id="weatherTitle">正在获取天气</h1>
+
+            <p id="weatherDetail">
+              获取你当前位置的天气状况…
+            </p >
+          </div>
+        </div>
+      </div>
+
+      <div class="weather-temp">
+        <strong id="temperature">--°</strong>
+        <span id="locationLabel">当前位置</span>
+      </div>
+
+    </section>
+
+
+    <!-- 本月财务 -->
+    <section class="balance-card reveal reveal-2">
+
+      <div class="balance-title">
+        <span>本月真正可用</span>
+
+        <span class="month" id="monthLabel"></span>
+      </div>
+
+      <h2 id="availableBalance">$0.00</h2>
+
+      <div class="balance-row">
+
+        <div>
+          <span>收入</span>
+          <strong id="totalIncome">$0.00</strong>
+        </div>
+
+        <div>
+          <span>已支出</span>
+          <strong id="totalExpense">$0.00</strong>
+        </div>
+
+        <div>
+          <span>待付款</span>
+          <strong id="pendingBills">$0.00</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- 固定账单 -->
+    <section class="section reveal reveal-3">
+
+      <div class="section-title">
+
+        <div>
+          <p class="mini-title">UPCOMING</p >
+          <h2>本月待付款</h2>
+        </div>
+
+        <span id="pendingCount"></span>
+
+      </div>
+
+      <div id="fixedBillsList" class="bill-list"></div>
+
+    </section>
+
+
+    <!-- Sienna贷款 -->
+    <section class="section reveal reveal-4">
+
+      <div class="section-title">
+
+        <div>
+          <p class="mini-title">MY DEBT</p >
+          <h2>我的负债</h2>
+        </div>
+
+      </div>
+
+
+      <article class="loan-card">
+
+        <div class="loan-header">
+
+          <div class="car-icon">🚙</div>
+
+          <div class="loan-name">
+            <span>Toyota</span>
+            <h3>Sienna</h3>
+          </div>
+
+          <div class="loan-pill">60个月</div>
+
+        </div>
+
+
+        <div class="loan-highlight">
+
+          <span>贷款金额</span>
+
+          <strong>$47,412.56</strong>
+
+        </div>
+
+
+        <div class="loan-details">
+
+          <div>
+            <span>月供</span>
+            <strong>$1,032.03</strong>
+          </div>
+
+          <div>
+            <span>APR</span>
+            <strong>10.84%</strong>
+          </div>
+
+          <div>
+            <span>预计利息</span>
+            <strong>$14,509.24</strong>
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- 快速记账 -->
+    <section class="section reveal reveal-5">
+
+      <div class="section-title">
+
+        <div>
+          <p class="mini-title">QUICK ADD</p >
+          <h2>快速记账</h2>
+        </div>
+
+      </div>
+
+
+      <div class="quick-actions">
+
+        <button class="quick-category" data-category="吃饭">
+          <span>🍔</span>
+          <small>吃饭</small>
+        </button>
+
+        <button class="quick-category" data-category="购物">
+          <span>🛍️</span>
+          <small>购物</small>
+        </button>
+
+        <button class="quick-category" data-category="车">
+          <span>🚗</span>
+          <small>汽车</small>
+        </button>
+
+        <button class="quick-category" data-category="手机">
+          <span>📱</span>
+          <small>手机</small>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- 分类支出 -->
+    <section class="section reveal reveal-6">
+
+      <div class="section-title">
+
+        <div>
+          <p class="mini-title">SPENDING</p >
+          <h2>本月支出</h2>
+        </div>
+
+      </div>
+
+      <div id="categorySummary"></div>
+
+    </section>
+
+
+    <!-- 最近账单 -->
+    <section class="section reveal reveal-7">
+
+      <div class="section-title">
+
+        <div>
+          <p class="mini-title">RECENT</p >
+          <h2>最近账单</h2>
+        </div>
+
+      </div>
+
+      <div id="transactionList"></div>
+
+    </section>
+
+  </main>
+
+
+  <!-- 悬浮记账 -->
+  <button
+    id="floatingAddBtn"
+    class="floating-add"
+    aria-label="记一笔"
+  >
+    ＋
+  </button>
+
+
+  <!-- 底部导航 -->
+  <nav class="bottom-nav">
+
+    <button class="nav-item active">
+      <span>⌂</span>
+      <small>首页</small>
+    </button>
+
+    <button class="nav-item">
+      <span>≡</span>
+      <small>账单</small>
+    </button>
+
+    <button class="nav-item">
+      <span>◔</span>
+      <small>统计</small>
+    </button>
+
+    <button class="nav-item">
+      <span>☺</span>
+      <small>我的</small>
+    </button>
+
+  </nav>
+
+
+  <!-- 记账弹窗 -->
+  <div id="transactionModal" class="modal hidden">
+
+    <div class="modal-sheet">
+
+      <div class="sheet-handle"></div>
+
+
+      <div class="sheet-title">
+
+        <h2>记一笔</h2>
+
+        <button id="closeTransactionModal">×</button>
+
+      </div>
+
+
+      <div class="type-switch">
+
+        <button
+          class="type-btn active"
+          data-type="expense"
+        >
+          支出
+        </button>
+
+        <button
+          class="type-btn"
+          data-type="income"
+        >
+          收入
+        </button>
+
+      </div>
+
+
+      <label>金额</label>
+
+      <div class="money-input">
+
+        <span>$</span>
+
+        <input
+          id="amount"
+          type="number"
+          inputmode="decimal"
+          step="0.01"
+          placeholder="0.00"
+        >
+
+      </div>
+
+
+      <label>分类</label>
+
+      <div id="categoryGrid" class="category-grid">
+
+        <button data-category="吃饭">🍔 吃饭</button>
+
+        <button data-category="购物">🛍️ 购物</button>
+
+        <button data-category="车">🚗 汽车</button>
+
+        <button data-category="车贷">🚙 车贷</button>
+
+        <button data-category="车险">🛡️ 车险</button>
+
+        <button data-category="手机">📱 手机</button>
+
+        <button data-category="工资">💵 工资</button>
+
+        <button data-category="其他">📦 其他</button>
+
+      </div>
+
+
+      <label>备注</label>
+
+      <input
+        id="note"
+        class="note-input"
+        type="text"
+        placeholder="例如：Costco、加油、工资"
+      >
+
+
+      <button id="saveTransactionBtn" class="primary-btn">
+        保存
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- 编辑车险 -->
+  <div id="insuranceModal" class="modal hidden">
+
+    <div class="modal-sheet small-sheet">
+
+      <div class="sheet-handle"></div>
+
+      <div class="sheet-title">
+
+        <h2>车险金额</h2>
+
+        <button id="closeInsuranceModal">×</button>
+
+      </div>
+
+      <p class="modal-description">
+        输入你每个月实际需要支付的车险金额。
+      </p >
+
+      <div class="money-input">
+
+        <span>$</span>
+
+        <input
+          id="insuranceInput"
+          type="number"
+          inputmode="decimal"
+          step="0.01"
+          placeholder="0.00"
+        >
+
+      </div>
+
+      <button id="saveInsuranceBtn" class="primary-btn">
+        保存
+      </button>
+
+    </div>
+
+  </div>
+
 
   <script src="script.js"></script>
 
