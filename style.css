@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  background: #f3f4f6;
+  color: #222;
+}
+
+.container {
+  width: 94%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding-bottom: 30px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 28px;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.summary div {
+  background: white;
+  padding: 18px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.summary div:last-child {
+  grid-column: 1 / -1;
+}
+
+.summary span {
+  display: block;
+  color: #666;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.summary strong {
+  font-size: 22px;
+}
+
+.form {
+  background: white;
+  padding: 16px;
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+  margin-bottom: 24px;
+}
+
+.form input,
+.form select,
+.form button {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+}
+
+.form button {
+  background: #111827;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+h2 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+#transactionList {
+  margin-top: 12px;
+}
+
+.transaction {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.income {
+  color: green;
+}
+
+.expense {
+  color: red;
+}
+
+.delete-btn {
+  background: #eee;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media (min-width: 700px) {
+  .container {
+    margin: 40px auto;
+  }
+
+  .summary {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .summary div:last-child {
+    grid-column: auto;
+  }
+
+  .form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form button {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#111827">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="我的记账本">
+
+  <title>我的记账软件</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>我的记账本</h1>
+
+    <div class="summary">
+      <div>
+        <span>收入</span>
+        <strong id="totalIncome">$0.00</strong>
+      </div>
+
+      <div>
+        <span>支出</span>
+        <strong id="totalExpense">$0.00</strong>
+      </div>
+
+      <div>
+        <span>余额</span>
+        <strong id="balance">$0.00</strong>
+      </div>
+    </div>
+
+    <div class="form">
+
+      <select id="type">
+        <option value="expense">支出</option>
+        <option value="income">收入</option>
+      </select>
+
+      <input type="number" id="amount" placeholder="金额">
+
+      <select id="category">
+        <option value="吃饭">吃饭</option>
+        <option value="房租">房租</option>
+        <option value="车">车</option>
+        <option value="购物">购物</option>
+        <option value="工资">工资</option>
+        <option value="其他">其他</option>
+      </select>
+
+      <input type="text" id="note" placeholder="备注">
+
+      <button id="addBtn">记一笔</button>
+
+    </div>
+
+    <h2>账单记录</h2>
+
+    <div id="transactionList"></div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
